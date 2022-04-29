@@ -4,7 +4,7 @@ class Person {
     constructor(firstName,lastName,skills){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.skills=[skills];
+        this.skills = skills;
        
         
     }
@@ -14,45 +14,18 @@ class Person {
     setLastName(lastName){
         this.lastName = lastName;
     }
-    learnSkill=(skills)=>{ 
-        // console.log(this.skills=skills);
-        // const myExecutor=(resolve, reject) => {
-            
-                if (mapSkills.has(this.skills=skills)) {
-
-                    console.log(mapSkills.get(this.skills=skills));
-                } else {
-                // setTimeout(()=>{
-                    mapSkills.set(this.skills=skills,5000); 
-                }
+    learnSkill=(skill)=>{
+        let timeToWait = 5000;
+        if (mapSkills[skill]) {
+            timeToWait = mapSkills[skill]
+        }
                
-            // },mapSkills.get(this.skills=skills))
-        // const skillTime = () => {
-            // const promise1 = Promise.resolve(this.skills=skills);
-            const promise = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                //     person.skills=mapSkills.keys();
-                // console.log(person.skills);
-
-                 resolve(person => console.log(person.skills));
-                },mapSkills.get(this.skills=skills) );
-            });
-            // const promise=new Promise(myExecutor);
-            return promise;
-        // };
-        
-        // const orderPromise = skillTime();
-        
-        // console.log(orderPromise);   
-        // function wait(ms) { 
-        //     return new Promise((resolve, reject) => setTimeout(resolve, ms));
-        //   }
-        //   async function DoLoop() {
-        //     for (let count = 25; count >= 0; --count) {
-        //       console.log(count);
-        //       await wait(7000);
-        //     }
-        //   }
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                this.skills.push(skill)
+                resolve(this);
+            }, timeToWait);
+        });
     }
 }
 // var person = new Person("john","doe");
@@ -73,17 +46,22 @@ class Person {
 // console.log(mapSkills);
  
  
-var person = new Person("John", "Doe"); 
+var person = new Person("John", "Doe", ["java"]);
 var skill=person.skills;
 
-var mapSkills=new Map([
-    // ["JS", 5000],
-    // ["PYTHON",10000]
-    
-  ]);
+var mapSkills = {
+    "js": 3000,
+    "php": 1000
+};
+
 console.log(person.skills);
 // console.log(mapSkills);
-person.learnSkill("JS").then(person => {console.log(person.skills)});
+person.learnSkill("js").then( person => {
+    console.log("Finished Promise")
+    console.log(person.skills)
+});
+
+console.log(person.skills);
 
 // console.log(mapSkills);
 
