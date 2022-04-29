@@ -36,16 +36,7 @@ class Person {
 // person.setLastName("Azzam");
 // console.log(person.firstName);
 // console.log(person.lastName);
-// var person = new Person();
 
-// console.log(person.skills);
-// const mapSkills = new Map([
-//     ["JS", 5]
-//   ]);
-//   mapSkills.set("PYTHON",10);
-// console.log(mapSkills);
- 
- 
 var person = new Person("John", "Doe", ["java"]);
 var skill=person.skills;
 
@@ -55,38 +46,11 @@ var mapSkills = {
 };
 
 console.log(person.skills);
-// console.log(mapSkills);
+
 person.learnSkill("js").then( person => {
     console.log("Finished Promise")
     console.log(person.skills)
 });
 
 console.log(person.skills);
-
-// console.log(mapSkills);
-
-// let text = "";
-// mapSkills.forEach (function(value, key) {
-//   text += key + ' = ' + value +'\n';
-// })
-// console.log(text);
-// let veggies = "";
-// for (const x of mapSkills.keys()) {
-//   veggies += x+'\n';
-// }
-// console.log(veggies);
-
-// let total = 0;
-// for (const x of mapSkills.values()) {
-//   total += x;
-// }
-// console.log(total);
-
-// let text2 = "";
-// for (const x of mapSkills.entries()) {
-//   text2 += x+'\n';
-// }
-// console.log(text2);
-
-
 
