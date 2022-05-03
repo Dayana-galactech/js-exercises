@@ -1,11 +1,11 @@
 
 class Person {
     
-    constructor(firstName,lastName,skills){
+    constructor(firstName,lastName,skills,jobID){
         this.firstName = firstName;
         this.lastName = lastName;
         this.skills = skills;
-       
+        this.jobID=jobID;
         
     }
     setFirstName(firstName){
@@ -27,7 +27,25 @@ class Person {
             }, timeToWait);
         });
     }
-}
+    async getJob(jobName){
+        const response = await fetch('https://reqres.in/api/users',{
+                method: 'POST',
+                headers:{'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "name": ""+person.firstName+"",
+                "job": ""+jobName+""
+            })
+        })
+        var data = await response.json();
+        console.log(data);
+        this.jobID=data.id;
+
+    }
+    }
+
+//EXERCISE 1
+
 // var person = new Person("john","doe");
 // console.log(person.firstName);
 // console.log(person.lastName);
@@ -37,20 +55,29 @@ class Person {
 // console.log(person.firstName);
 // console.log(person.lastName);
 
+
+// EXERCISE 2
+
 var person = new Person("John", "Doe", ["java"]);
-var skill=person.skills;
+// var skill=person.skills;
 
 var mapSkills = {
     "js": 3000,
     "php": 1000
 };
 
-console.log(person.skills);
+// console.log(person.skills);
 
-person.learnSkill("js").then( person => {
-    console.log("Finished Promise")
-    console.log(person.skills)
-});
+// person.learnSkill("js").then( person => {
+//     console.log("Finished Promise")
+//     console.log(person.skills)
+// });
 
-console.log(person.skills);
+// console.log(person.skills);
+
+
+//EXERCISE 4
+
+person.getJob("web developer");
+setTimeout(()=>{console.log(person.jobID)},5000)
 
