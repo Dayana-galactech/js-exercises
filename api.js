@@ -1,12 +1,13 @@
-const randomUserGenerator=()=>{
-    fetch('https://randomuser.me/api').then((response) => {
+
+
+const getRandomPeople=(n)=>{
+   
+    fetch('https://randomuser.me/api/?results='+n).then((response) => {
         return response.json()
     }).then((data)=>{
         console.log(data)
     })
-}
 
-window.onload=()=>{
-    randomUserGenerator()
-    
 }
+var people = getRandomPeople(3);
+console.log(people);
